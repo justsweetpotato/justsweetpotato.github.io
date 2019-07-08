@@ -193,16 +193,6 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            About
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -430,7 +420,9 @@
           
 
   
-      <div id="gitalk-container"></div>
+      <div id="gitalk-container">
+      </div>
+
   
 
 
@@ -709,9 +701,11 @@
 
 
 
+
   <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+
   <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-  <script src="/js/src/md5.min.js"></script>
+
    <script type="text/javascript">
         var gitalk = new Gitalk({
           clientID: 'bea650d554c3d4b1ed47',
@@ -719,7 +713,7 @@
           repo: 'justsweetpotato.github.io',
           owner: 'justsweetpotato',
           admin: ['justsweetpotato'],
-          id: md5(location.pathname),
+          id: location.pathname,
           labels: ['Gitalk'],
           perPage: 15,
           pagerDirection: 'last',
@@ -728,7 +722,6 @@
         })
         gitalk.render('gitalk-container')           
        </script>
-
 
   
 
