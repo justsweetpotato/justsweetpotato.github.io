@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Potato&#39;s Blog">
 <meta property="og:description" content="在设置 Nginx 的时候发现几行简单的代码, 就能够实现反向代理谷歌, 实现国内直接访问谷歌.设置如下, 需要在国外的主机上安装 Nginx, 并修改 server 项. 12345678910server &amp;#123;    charset utf-8;    listen 80;    server_name &amp;lt;你的 IP 或域名&amp;gt;;    location / &amp;#123;">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-08T05:53:51.972Z">
+<meta property="og:updated_time" content="2019-07-08T17:02:59.658Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="几行 Nginx 代码实现反代谷歌">
 <meta name="twitter:description" content="在设置 Nginx 的时候发现几行简单的代码, 就能够实现反向代理谷歌, 实现国内直接访问谷歌.设置如下, 需要在国外的主机上安装 Nginx, 并修改 server 项. 12345678910server &amp;#123;    charset utf-8;    listen 80;    server_name &amp;lt;你的 IP 或域名&amp;gt;;    location / &amp;#123;">
@@ -311,7 +311,7 @@
 
       
         <p>在设置 Nginx 的时候发现几行简单的代码, 就能够实现反向代理谷歌, 实现国内直接访问谷歌.<br>设置如下, 需要在国外的主机上安装 Nginx, 并修改 server 项.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    charset utf-8;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name &lt;你的 IP 或域名&gt;;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy\_set\_header Host &apos;www.google.com&apos;;</span><br><span class="line">        proxy_pass https://www.google.com;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    charset utf-8;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name &lt;你的 IP 或域名&gt;;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_set_header Host &apos;www.google.com&apos;;</span><br><span class="line">        proxy_pass https://www.google.com;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <a id="more"></a>
 
@@ -319,7 +319,7 @@
 <p>优点: 配置快捷方便, 能够反代任何网站, 维基百科, p站, 500px等.<br>缺点: 只能使用谷歌搜索, 点击谷歌图片或者只是想点击谷歌图标返回首页都会跳转到谷歌真正的域名导致无法访问. 换言之子域名还是无法访问.</p>
 <br>
 
-<p>GitHub 上的一个开源项目可以解决这一点.<br><a href="https://github.com/cuber/ngx\_http\_google\_filter\_module" target="_blank" rel="noopener">https://github.com/cuber/ngx\_http\_google\_filter\_module</a><br>大名鼎鼎的谷歌镜像 wen.lu 就是这个作者做的. </p>
+<p>GitHub 上的一个开源项目可以解决这一点.<br><a href="https://github.com/cuber/ngx_http_google_filter_module" target="_blank" rel="noopener">https://github.com/cuber/ngx_http_google_filter_module</a><br>大名鼎鼎的谷歌镜像 wen.lu 就是这个作者做的. </p>
 <p>优点: 谷歌所有服务都可以使用, 也比普通 nginx 反代更省流量, 多样化的部署设置, 也可以简洁配置.<br>缺点: 需要下载软件和编译 Nginx, 略微麻烦. 只对谷歌进行了代理, 其他网站无效.</p>
 <br>
 
