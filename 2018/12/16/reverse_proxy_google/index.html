@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Potato&#39;s Blog">
 <meta property="og:description" content="在设置 Nginx 的时候发现几行简单的代码, 就能够实现反向代理谷歌, 实现国内直接访问谷歌.设置如下, 需要在国外的主机上安装 Nginx, 并修改 server 项. 12345678910server &amp;#123;    charset utf-8;    listen 80;    server_name &amp;lt;你的 IP 或域名&amp;gt;;    location / &amp;#123;">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-08T17:02:59.658Z">
+<meta property="og:updated_time" content="2019-07-09T04:59:18.690Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="几行 Nginx 代码实现反代谷歌">
 <meta name="twitter:description" content="在设置 Nginx 的时候发现几行简单的代码, 就能够实现反向代理谷歌, 实现国内直接访问谷歌.设置如下, 需要在国外的主机上安装 Nginx, 并修改 server 项. 12345678910server &amp;#123;    charset utf-8;    listen 80;    server_name &amp;lt;你的 IP 或域名&amp;gt;;    location / &amp;#123;">
@@ -315,20 +315,20 @@
 
 <a id="more"></a>
 
-<p>因为监听了 80 端口, 所以访问你的网站时 Nginx 会帮你做转发, 你的网站看起来就变成谷歌了, 弄个证书, 就可以弄成 https 访问了. </p>
+<p>因为监听了 80 端口, 所以访问你的网站时 Nginx 会帮你做转发, 你的网站看起来就变成谷歌了, 弄个证书, 就可以弄成 HTTPS 访问了. </p>
 <p>优点: 配置快捷方便, 能够反代任何网站, 维基百科, p站, 500px等.<br>缺点: 只能使用谷歌搜索, 点击谷歌图片或者只是想点击谷歌图标返回首页都会跳转到谷歌真正的域名导致无法访问. 换言之子域名还是无法访问.</p>
 <br>
 
 <p>GitHub 上的一个开源项目可以解决这一点.<br><a href="https://github.com/cuber/ngx_http_google_filter_module" target="_blank" rel="noopener">https://github.com/cuber/ngx_http_google_filter_module</a><br>大名鼎鼎的谷歌镜像 wen.lu 就是这个作者做的. </p>
-<p>优点: 谷歌所有服务都可以使用, 也比普通 nginx 反代更省流量, 多样化的部署设置, 也可以简洁配置.<br>缺点: 需要下载软件和编译 Nginx, 略微麻烦. 只对谷歌进行了代理, 其他网站无效.</p>
+<p>优点: 谷歌所有服务都可以使用, 也比普通 Nginx 反代更省流量, 多样化的部署设置, 也可以简洁配置.<br>缺点: 需要下载软件和编译 Nginx, 略微麻烦. 只对谷歌进行了代理, 其他网站无效.</p>
 <br>
 
-<p>如果没有自己的服务器, 也不用担心, 可以通过 heroku 服务来部署通用 web 代理.<br>效果是访问的所有网站都经过 heroku 的服务器代理, 达到匿名性和突破 GFW 的目的.<br>项目在 <a href="https://github.com/nfriedly/node-unblocker" target="_blank" rel="noopener">https://github.com/nfriedly/node-unblocker</a> </p>
+<p>如果没有自己的服务器, 也不用担心, 可以通过 Heroku 服务来部署通用 Web 代理.<br>效果是访问的所有网站都经过 Heroku 的服务器代理, 达到匿名性和突破 GFW 的目的.<br>项目在 <a href="https://github.com/nfriedly/node-unblocker" target="_blank" rel="noopener">https://github.com/nfriedly/node-unblocker</a> </p>
 <p>有位作者对原项目进行了修改, 提升了易用性和安全性, 我本人也测试部署成功了, 建议直接 clone 他的代码. 项目在 <a href="https://github.com/gfw-breaker/heroku-node-proxy" target="_blank" rel="noopener">https://github.com/gfw-breaker/heroku-node-proxy</a><br>按照之前的教程 git push heroku master 就行了. </p>
 <p>优点: 部署简单, 能够代理几乎是任何网站, 不是自己的服务器, 不心疼流量. 访问国内网站也会经过代理服务器, 相当于一个不需要客户端的网页代理.<br>缺点: 作者自己的 index 页面有点恶心, 你可能想自己改一下, 如果禁用 js 此项目后端将无法返回结果. heroku 的网络质量决定了体验度. 如果你使用谷歌搜索到了一个中文的网站, 你点开这个网站也会在此代理范围内, 访问国内网站速度较慢, 换言之, 会代理所有子域名和跳转域名.</p>
 <br>
 
-<p>当然, 最好的办法是自己做一个搜索引擎, 返回谷歌的搜索结果, 类似 startpage.<br>只需要自己写一个搜索引擎的界面, 调用谷歌 API 返回谷歌搜索出来的 json 数据, 填充到自己的网页中, 这样就有了一个自己的搜索引擎, 返回的是谷歌的搜索结果.</p>
+<p>当然, 最好的办法是自己做一个搜索引擎, 返回谷歌的搜索结果, 类似 Startpage.<br>只需要自己写一个搜索引擎的界面, 调用谷歌 API 返回谷歌搜索出来的 json 数据, 填充到自己的网页中, 这样就有了一个自己的搜索引擎, 返回的是谷歌的搜索结果.</p>
 <p>优点: 自己的当然是最安全的, 自定义的界面, 谷歌精准的搜索结果, 同时不会被谷歌搜集个人信息, 想想都令人心动!<br>缺点: 脱发.</p>
 <br>
 
