@@ -79,20 +79,18 @@
 
 
 
-<meta name="description" content="PS: 本教程已过时, 请移步 https://github.com/justsweetpotato/V2Ray_Tutorial">
+<meta name="description" content="最近遇到了一个特奇葩的问题… 使用手机共享热点给电脑, IPv6 网站访问正常, IPv4 网站无法访问, 由于大多数网站目前仍使用 IPv4, 表现结果为大多数网站无法访问. 如何发现是这个问题而不是其他问题(比如代理故障) ?  ping 任何 IPv4 的地址无法 ping 通, ping 支持 IPv6 的地址则会返回 IPv6 地址. 使用 nslookup 查询 IP 地址, 显示默认">
 <meta name="keywords" content="技术">
 <meta property="og:type" content="article">
-<meta property="og:title" content="V2Ray 简易搭建教程">
-<meta property="og:url" content="http://justsweetpotato.github.io/2018/11/03/v2ray_deploy/index.html">
+<meta property="og:title" content="解决电脑只能访问 IPv6 网站无法访问 IPv4 网站的问题">
+<meta property="og:url" content="http://justsweetpotato.github.io/2019/07/23/fixed-ipv4-network-error/index.html">
 <meta property="og:site_name" content="Potato&#39;s Blog">
-<meta property="og:description" content="PS: 本教程已过时, 请移步 https://github.com/justsweetpotato/V2Ray_Tutorial">
+<meta property="og:description" content="最近遇到了一个特奇葩的问题… 使用手机共享热点给电脑, IPv6 网站访问正常, IPv4 网站无法访问, 由于大多数网站目前仍使用 IPv4, 表现结果为大多数网站无法访问. 如何发现是这个问题而不是其他问题(比如代理故障) ?  ping 任何 IPv4 的地址无法 ping 通, ping 支持 IPv6 的地址则会返回 IPv6 地址. 使用 nslookup 查询 IP 地址, 显示默认">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://justsweetpotato.files.wordpress.com/2018/11/v2ray.png">
-<meta property="og:updated_time" content="2019-07-09T05:02:45.143Z">
+<meta property="og:updated_time" content="2019-07-23T10:55:19.561Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="V2Ray 简易搭建教程">
-<meta name="twitter:description" content="PS: 本教程已过时, 请移步 https://github.com/justsweetpotato/V2Ray_Tutorial">
-<meta name="twitter:image" content="https://justsweetpotato.files.wordpress.com/2018/11/v2ray.png">
+<meta name="twitter:title" content="解决电脑只能访问 IPv6 网站无法访问 IPv4 网站的问题">
+<meta name="twitter:description" content="最近遇到了一个特奇葩的问题… 使用手机共享热点给电脑, IPv6 网站访问正常, IPv4 网站无法访问, 由于大多数网站目前仍使用 IPv4, 表现结果为大多数网站无法访问. 如何发现是这个问题而不是其他问题(比如代理故障) ?  ping 任何 IPv4 的地址无法 ping 通, ping 支持 IPv6 的地址则会返回 IPv6 地址. 使用 nslookup 查询 IP 地址, 显示默认">
 
 
 
@@ -122,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://justsweetpotato.github.io/2018/11/03/v2ray_deploy/">
+  <link rel="canonical" href="http://justsweetpotato.github.io/2019/07/23/fixed-ipv4-network-error/">
 
 
 
 
 
-  <title>V2Ray 简易搭建教程 | Potato's Blog</title>
+  <title>解决电脑只能访问 IPv6 网站无法访问 IPv4 网站的问题 | Potato's Blog</title>
   
 
 
@@ -245,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://justsweetpotato.github.io/2018/11/03/v2ray_deploy/">
+    <link itemprop="mainEntityOfPage" href="http://justsweetpotato.github.io/2019/07/23/fixed-ipv4-network-error/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jake Wu">
@@ -262,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">V2Ray 简易搭建教程</h1>
+          <h1 class="post-title" itemprop="name headline">解决电脑只能访问 IPv6 网站无法访问 IPv4 网站的问题</h1>
         
 
         <div class="post-meta">
@@ -274,8 +272,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-03T20:57:37+08:00">
-                2018-11-03
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-23T18:26:46+08:00">
+                2019-07-23
               </time>
             
 
@@ -312,56 +310,29 @@
       
 
       
-        <p>PS: 本教程已过时, 请移步 <a href="https://github.com/justsweetpotato/V2Ray_Tutorial" target="_blank" rel="noopener">https://github.com/justsweetpotato/V2Ray_Tutorial</a></p>
+        <p>最近遇到了一个特奇葩的问题…</p>
+<p>使用手机共享热点给电脑, IPv6 网站访问正常, IPv4 网站无法访问, 由于大多数网站目前仍使用 IPv4, 表现结果为大多数网站无法访问.</p>
+<p>如何发现是这个问题而不是其他问题(比如代理故障) ?</p>
+<ol>
+<li>ping 任何 IPv4 的地址无法 ping 通, ping 支持 IPv6 的地址则会返回 IPv6 地址.</li>
+<li>使用 nslookup 查询 IP 地址, 显示默认 DNS 服务器为 “Cache2-sz-ipv6/2408:805d:8::”, 并返回该被查询网址的 IPv6 地址与 IPv4 地址.</li>
+<li>禁用正在使用的网卡的 IPv6 协议, 导致全部网站无法上网, 网卡直接显示无法识别网络.</li>
+</ol>
 <a id="more"></a>
 
-<i>
-"Doesn't matter what you did, or what you were. If you go out there, you fight, and you fight to kill. Stay in here, you're good. I'll send your brother to come find you. But if you step out that door, you are an Avenger."    -Hawkeye
-</i>
-
-<br>
-
-<p>本教程基于 V2ray 官方教程, 力求做到最通俗易懂.</p>
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>首先, 你需要下载安装 V2Ray, 这里有官方安装脚本一键安装, 建议 Debian 9.x 以上以及 Ubuntu 16.04 以上的系统.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ bash &lt;(curl -L -s https://install.direct/go.sh)</span><br></pre></td></tr></table></figure>
-
-<p>如果提示没有 curl, 请使用 apt install curl 命令安装.</p>
-<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>配置文件位于 /etc/v2ray/config.json 目录下, 这里我们先不修改配置, 有一个自动生成 V2Ray 服务器配置参数的工具, 可以快速帮助我们生成想要的配置参数, 然后直接复制进我们的服务器设置中就可以了.</p>
-<p>点击 <a href="https://intmainreturn0.com/v2ray-config-gen/#" target="_blank" rel="noopener"><span style="color: #ff0000;">这里</span></a> 打开生成器. 选择你需要的参数后, 复制中间部分生成的参数, 使用 vi 编辑器编辑我们服务器的 config.json 文件, 复制进去.</p>
-<p>PS: 请勿关闭生成器页面, 等下还要复制到客户端里面.</p>
-<p>KCP 模式可以应对运营商 QoS 限速, 如果你所在的地区线路被限速, 推荐使用这种模式. *可以直接配置多个端口使用.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vi /etc/v2ray/config.json</span><br></pre></td></tr></table></figure>
-
-<p>vi 编辑器的用法不做过多科普, 打开配置文件后, 按一下键盘上的 i 进入编辑模式, 复制进刚刚生成的配置参数, 按一下 Esc 进入交互模式, 接着按住 Shift + z + z (按住 shift 按两下z), 注意不要切换到输入法, 即可保存退出, 可以使用 cat /etc/v2ray/config.json 命令来检查输入的是否正确.</p>
-<h4 id="运行服务端"><a href="#运行服务端" class="headerlink" title="运行服务端"></a>运行服务端</h4><p>修改完配置文件后, 我们需要重启 v2Ray 服务器, 在控制台输入如下命令.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl restart v2ray</span><br></pre></td></tr></table></figure>
-
-<p>Ubuntu 下使用 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ service v2ray restart</span><br></pre></td></tr></table></figure>
-
-<p>即可重启服务, 下面是你可能需要用到的终端命令.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl status v2ray        # 查看运行状态</span><br><span class="line"></span><br><span class="line">$ sudo systemctl stop v2ray          # 停止运行</span><br><span class="line"></span><br><span class="line">$ sudo systemctl start v2ray         # 启动服务</span><br></pre></td></tr></table></figure>
-
-<p>目前服务端就已经成功配置完毕并且启动啦.</p>
-<h4 id="运行客户端"><a href="#运行客户端" class="headerlink" title="运行客户端"></a>运行客户端</h4><p>Windows 客户端需要用到 v2rayN, 这是一款可视化的 V2Ray 客户端, 使用它, 连接服务器, 配置客户端都会变得十分容易(Mac 客户端见下方). </p>
-<p>点击 <span style="color: #ff0000;"><a style="color: #ff0000;" href="https://github.com/2dust/v2rayN/releases" target="_blank" rel="noopener">这里</a></span> 下载名为 v2rayN.zip 的文件, 目前版本是 2.17. </p>
-<p>接下来我们还需要下载 v2ray-core, 需要它 v2rayN 客户端才能运行, 点击 <a href="https://github.com/v2ray/v2ray-core/releases" target="_blank" rel="noopener"><span style="color: #ff0000;">这里</span></a> 下载对应你操作系统的压缩包. 之后我们需要把这两个文件解压, 解压出来的文件放在同一个文件夹下, 如图所示.</p>
-<img class="alignnone size-full wp-image-67" src="https://justsweetpotato.files.wordpress.com/2018/11/v2ray.png" alt="V2ray" width="613" height="540">
-
-<p>然后双击 v2rayN.exe 运行客户端, 点击左上角的 服务器 - 添加[VMess]服务器 填入你刚刚配置的参数, 点击确定. 随后在右下角的小图标上 右键点击 - 启用Http代理, 服务器选择刚刚配置进去的服务器, Http代理模式 根据你自己的需要选择.</p>
-<p>到此为止就已经配置完毕了, 你可能还需要给你的浏览器, 或者应用单独设置代理, 需要把代理模式设置为 socks5, 地址为 127.0.0.1, 端口为 V2rayN 设置中的 参数设置 - 本地监听端口.</p>
-<p>Mac 客户端需要用到 V2RayX, 下载后可以直接配置使用, 点击 <a style="color: #ff0000;" href="https://github.com/Cenmrev/V2RayX/releases" target="_blank" rel="noopener">这里</a> 下载. core 如需更新参见项目文档.</p>
-<p>iOS 客户端推荐 Shadowrocket(暂时不支持 KCP), 或者 i2Ray(支持 KCP), 使用 [非国区] iTunes 账号均可下载.</p>
-<p>现在, 享受自由的互联网吧.</p>
-<p>你现在是复仇者了.</p>
-<h4 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h4><p>在 CentOS6 上脚本安装提示 “Install daemon fail, please install it manually”, 原因是不支持 CentOS6, 解决方法见  <a href="https://www.feiqy.com/v2ray/" target="_blank" rel="noopener">https://www.feiqy.com/v2ray/</a></p>
-<p>参考资料:</p>
-<ol>
-<li><a href="https://www.v2ray.com/" target="_blank" rel="noopener">https://www.v2ray.com/</a></li>
-<li><a href="https://toutyrater.github.io/" target="_blank" rel="noopener">https://toutyrater.github.io/</a></li>
-<li><a href="https://www.youtube.com/watch?v=-z06k0654Wg" target="_blank" rel="noopener">https://www.youtube.com/watch?v=-z06k0654Wg</a></li>
-<li><a href="https://www.youtube.com/watch?v=4yqTvFZJTuI&amp;t=1s" target="_blank" rel="noopener">https://www.youtube.com/watch?v=4yqTvFZJTuI&amp;t=1s</a></li>
-</ol>
+<p>在花了很长时间排除并非网络代理的问题(网卡重置可解决), 而是 “仅能访问 IPv6 网址” 的故障后, 使用 English 在 Google 搜寻, 发现了 微软 的官方回答. 在一步步照做后(仅完成第一步)就发现问题解决了…<br>所以, 最后还是没弄懂为什么会出现这个问题 ??!</p>
+<p>在这里贴出问题与回答, 希望能帮助遇到同样问题的人.</p>
+<p>Question: </p>
+<ul>
+<li><a href="https://answers.microsoft.com/en-us/windows/forum/all/ipv4-not-working-ipv6-works-fine/fbab6442-9156-4e1e-9c6c-0b55c3a3e7b6" target="_blank" rel="noopener">IPv4 not working ipv6 works fine</a></li>
+</ul>
+<p>Answer: </p>
+<ul>
+<li>You may experience issues with connecting to the Internet if the recent changes made triggered a system conflict or due to a broken component of the system files related to your network adapter. We’d like to verify if you were able to update your network adapter to check if this is causing the issue. </li>
+<li>In the meantime, we suggest that you follow the steps listed on this <a href="https://support.microsoft.com/en-ph/help/10741/windows-fix-network-connection-issues" target="_blank" rel="noopener">link</a> as an initial troubleshooting regarding the issue.</li>
+</ul>
+<p>PS: 点击 Answer 中的 link 查看解决方法.</p>
+<p>值得高兴的是, 联通的移动端网络已经支持 IPv6 了<del>~</del></p>
 
       
     </div>
@@ -392,15 +363,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/07/08/welcome/" rel="next" title="欢迎来到新博客">
+                <i class="fa fa-chevron-left"></i> 欢迎来到新博客
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/23/you2php_in_heroku/" rel="prev" title="Heroku 免费搭建 YouTube 镜像网站">
-                Heroku 免费搭建 YouTube 镜像网站 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -456,17 +427,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -517,22 +479,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置"><span class="nav-number">2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行服务端"><span class="nav-number">3.</span> <span class="nav-text">运行服务端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行客户端"><span class="nav-number">4.</span> <span class="nav-text">运行客户端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常见问题"><span class="nav-number">5.</span> <span class="nav-text">常见问题</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

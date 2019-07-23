@@ -239,6 +239,137 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://justsweetpotato.github.io/2019/07/23/fixed-ipv4-network-error/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jake Wu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Potato's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/23/fixed-ipv4-network-error/" itemprop="url">解决电脑只能访问 IPv6 网站无法访问 IPv4 网站的问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-23T18:26:46+08:00">
+                2019-07-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>最近遇到了一个特奇葩的问题…</p>
+<p>使用手机共享热点给电脑, IPv6 网站访问正常, IPv4 网站无法访问, 由于大多数网站目前仍使用 IPv4, 表现结果为大多数网站无法访问.</p>
+<p>如何发现是这个问题而不是其他问题(比如代理故障) ?</p>
+<ol>
+<li>ping 任何 IPv4 的地址无法 ping 通, ping 支持 IPv6 的地址则会返回 IPv6 地址.</li>
+<li>使用 nslookup 查询 IP 地址, 显示默认 DNS 服务器为 “Cache2-sz-ipv6/2408:805d:8::”, 并返回该被查询网址的 IPv6 地址与 IPv4 地址.</li>
+<li>禁用正在使用的网卡的 IPv6 协议, 导致全部网站无法上网, 网卡直接显示无法识别网络.</li>
+</ol>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/23/fixed-ipv4-network-error/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://justsweetpotato.github.io/2019/07/08/welcome/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -890,7 +1021,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
