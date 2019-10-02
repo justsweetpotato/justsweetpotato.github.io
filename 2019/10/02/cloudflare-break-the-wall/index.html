@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/cloudflare/domain_workers.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/cloudflare/domain_change.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/cloudflare/goindex.png">
-<meta property="og:updated_time" content="2019-10-02T11:39:14.182Z">
+<meta property="og:updated_time" content="2019-10-02T18:47:49.349Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cloudflare 用于科学上网的三种方法">
 <meta name="twitter:description" content="Cloudflare是一间总部位于旧金山的美国跨国IT企业，以向客户提供基于反向代理的内容分发网络及分布式域名解析服务为主要业务。Cloudflare可以帮助受保护站点抵御包拒绝服务攻击等网络攻击，确保该网站长期在线，同时提升网站的性能、加载速度以改善访客体验。 维基百科 本文讲述了利用 Cloudflare CDN 来将被 Block 的 IP 救活, 以及使用 Cloudflare Worke">
@@ -317,17 +317,17 @@
 
       
         <p>Cloudflare是一间总部位于旧金山的美国跨国IT企业，以向客户提供基于反向代理的内容分发网络及分布式域名解析服务为主要业务。Cloudflare可以帮助受保护站点抵御包拒绝服务攻击等网络攻击，确保该网站长期在线，同时提升网站的性能、加载速度以改善访客体验。 <a href="https://zh.wikipedia.org/wiki/CloudFlare" target="_blank" rel="noopener">维基百科</a></p>
-<p>本文讲述了利用 Cloudflare CDN 来将被 Block 的 IP 救活, 以及使用 Cloudflare Workers + WorkersProxy 来反代任何网站, 还有 Cloudflare Workers + GoIndex 将 Google Drive 打造成国内可以访问的直链网盘, 且 Cloudflare Workers 并不需要有服务器, 部署也十分简单.</p>
+<p>本文讲述了利用 Cloudflare CDN 来将被 Block 的 IP 救活, 以及使用 Cloudflare Workers + WorkersProxy 来反代任何网站, 还有 Cloudflare Workers + GoIndex 将 Google Drive 打造成国内可以访问的直链网盘, 且 Cloudflare Workers 并不需要有服务器, 部署也十分简单. 最后介绍了 Warp VPN 可以作用备用翻墙手段.</p>
 <a id="more"></a>
 
-<h1 id="Cloudflare-CDN"><a href="#Cloudflare-CDN" class="headerlink" title="Cloudflare CDN"></a>Cloudflare CDN</h1><p>Cloudflare CDN 是在翻墙领域最广为人知的用法, 在 2019 年 6 月 GFW 的大规模封锁海外热门 VPS 时开始流行起来, IP 被封了就套个 CDN. CDN 除了可以防止 DDoS 最网站的直接攻击外, 也可以通过内容分发网络加快网站访问速度. </p>
+<h2 id="Cloudflare-CDN"><a href="#Cloudflare-CDN" class="headerlink" title="Cloudflare CDN"></a>Cloudflare CDN</h2><p>Cloudflare CDN 是在翻墙领域最广为人知的用法, 在 2019 年 6 月 GFW 的大规模封锁海外热门 VPS 时开始流行起来, IP 被封了就套个 CDN. CDN 除了可以防止 DDoS 最网站的直接攻击外, 也可以通过内容分发网络加快网站访问速度. </p>
 <p>V2Ray 的 WebSocket(以下简称 WS), 可以与 Nginx 完美配合, 从而达到与 HTTP 请求完全相同的效果, 不容易被识别.</p>
 <p>以下是 Nginx 的配置:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen  443 ssl;</span><br><span class="line">    ssl on;</span><br><span class="line">    ssl_certificate       /etc/nginx/ssl/fullchain.cer;  # 证书路径</span><br><span class="line">    ssl_certificate_key   /etc/nginx/ssl/private.key;  # 私钥路径</span><br><span class="line">    ssl_protocols         TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">    ssl_ciphers           HIGH:!aNULL:!MD5;</span><br><span class="line">    server_name           mydomain.com;  # 你的域名</span><br><span class="line">        location /ray &#123;  # V2Ray WS 设置中的路径</span><br><span class="line">            proxy_redirect off;</span><br><span class="line">            proxy_pass http://127.0.0.1:10000;  # 将请求转发给后端的 V2Ray 监听端口, V2Ray 则设置为只接受来自本地的请求</span><br><span class="line">            proxy_http_version 1.1;</span><br><span class="line">            proxy_set_header Upgrade $http_upgrade;</span><br><span class="line">            proxy_set_header Connection &quot;upgrade&quot;;</span><br><span class="line">            proxy_set_header Host $http_host;</span><br><span class="line">            &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这样设置的好处是, 避免了将 V2Ray 所使用的监听端口直接暴露在外部, 而是先通过 Ngix 监听 443 端口, 路径为 /ray 的请求, Nginx 会将其转发给真正的 V2Ray 端口 10000. 这使得外部看起来只是一个 HTTP 请求 不容易被识别. </p>
 <p>套不套 CDN 则视情况而定, 如果 IP 被 Block, 套 CDN 的话访问域名会先经 CDN 节点, 在由 CDN 节点访问你真正的服务器, 故可以救活你的网站或代理. 但因为使用人数众多, 套 CDN 通常会导致线路速度下降.</p>
-<h1 id="Cloudflare-Workers"><a href="#Cloudflare-Workers" class="headerlink" title="Cloudflare Workers"></a>Cloudflare Workers</h1><p>Cloudflare Workers 允许你直接部署 JavaScript 程序, 而不需要你自己的服务器, 也不需要域名.</p>
+<h2 id="Cloudflare-Workers"><a href="#Cloudflare-Workers" class="headerlink" title="Cloudflare Workers"></a>Cloudflare Workers</h2><p>Cloudflare Workers 允许你直接部署 JavaScript 程序, 而不需要你自己的服务器, 也不需要域名.</p>
 <p>Cloudflare Workers 免费版的限制是每天 10 万次请求, 10 TB 流量.</p>
 <p>你可以:</p>
 <ul>
@@ -335,8 +335,8 @@
 <li>使用 <a href="https://github.com/Siujoeng-Lau/WorkersProxy" target="_blank" rel="noopener">WorkersProxy</a> 反代任何网站.</li>
 <li>使用 <a href="https://github.com/donwa/goindex" target="_blank" rel="noopener">GoIndex</a> 将 Google Drive 打造成国内可以访问的直链式网盘.</li>
 </ul>
-<h2 id="WorkersProxy"><a href="#WorkersProxy" class="headerlink" title="WorkersProxy"></a>WorkersProxy</h2><p>WorkersProxy 可以用来反代任何网站, 使其在国内可以访问.</p>
-<p>效果展示: <a href="https://go.littlepotato.life/" target="_blank" rel="noopener">https://go.littlepotato.life/</a></p>
+<h4 id="WorkersProxy"><a href="#WorkersProxy" class="headerlink" title="WorkersProxy"></a>WorkersProxy</h4><p>WorkersProxy 可以用来反代任何网站, 使其在国内可以访问.</p>
+<p>演示: <a href="https://go.littlepotato.life/" target="_blank" rel="noopener">https://go.littlepotato.life/</a></p>
 <p>项目地址: <a href="https://github.com/Siujoeng-Lau/WorkersProxy" target="_blank" rel="noopener">https://github.com/Siujoeng-Lau/WorkersProxy</a></p>
 <p>注册 <a href="https://dash.cloudflare.com/" target="_blank" rel="noopener">Cloudflare</a>, 并打开 Workers 选项, 点击 Create a Worker.</p>
 <p><img src="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/cloudflare/workers.png" alt="1"></p>
@@ -347,8 +347,8 @@
 <p><img src="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/cloudflare/domain_change.png" alt="4"></p>
 <p>你需要将域名写成 <a href="https://apps.mydomain.com/" target="_blank" rel="noopener">https://apps.mydomain.com/</a>* 的形式注意结尾的 /*</p>
 <p>然后你就可以使用自己的域名访问了.</p>
-<h2 id="GoIndex"><a href="#GoIndex" class="headerlink" title="GoIndex"></a>GoIndex</h2><p>GoIndex 调用了 rclone 的接口, 同样使用了 Cloudflare Workers 部署.</p>
-<p>效果展示: <a href="https://drive.littlepotato.life/" target="_blank" rel="noopener">https://drive.littlepotato.life/</a></p>
+<h3 id="GoIndex"><a href="#GoIndex" class="headerlink" title="GoIndex"></a>GoIndex</h3><p>GoIndex 调用了 rclone 的接口, 同样使用了 Cloudflare Workers 部署.</p>
+<p>演示: <a href="https://drive.littlepotato.life/" target="_blank" rel="noopener">https://drive.littlepotato.life/</a></p>
 <p>项目地址: <a href="https://github.com/donwa/goindex" target="_blank" rel="noopener">https://github.com/donwa/goindex</a></p>
 <p>首先, 点击 <a href="https://install.gd.workers.dev/" target="_blank" rel="noopener">https://install.gd.workers.dev/</a> 获取认证码.</p>
 <p>需要你登录 Google 账号, 将获取到的验证码填入原页面.</p>
@@ -358,9 +358,17 @@
 <p>点击生成代码.</p>
 <p>如之前一样将代码复制进 Cloudflare Workers 中部署.</p>
 <p>同样的你也可以设置自己的域名访问.</p>
+<h2 id="WARP"><a href="#WARP" class="headerlink" title="WARP"></a>WARP</h2><p>Cloudflare Warp VPN 是 Cloudflare 推出的一项网络隐私保护服务, 原本的 1.1.1.1 APP 只提供 DNS 服务, 最近新推出了 Warp VPN 服务, 完全免费, 你还可以通过邀请朋友使用升级到 Warp+, Warp+ 使用 Argo 技术速度将更快.</p>
+<p>在 Google Play 或 iOS Store 均可下载. </p>
+<p>有一个脚本可以刷 Warp+ 的流量, 爽撸一波.</p>
+<p>项目地址: <a href="https://github.com/yyuueexxiinngg/some-scripts/tree/master/cloudflare" target="_blank" rel="noopener">https://github.com/yyuueexxiinngg/some-scripts/tree/master/cloudflare</a></p>
+<p>这里我使用的是 Python 版, 复制 cloudflare-warp-plus-aff.py 文件中的内容到本地, 打开 APP, 在 “设置” 中打开 “More settings”, 打开 “Diagnostics” 复制下自己的 “ID”.</p>
+<p>编辑下载的 cloudflare-warp-plus-aff.py 文件, 将 referrer = “YOUR REFERRER ID” 改为自己的 ID, timesToLoop = 10 的意思是刷 10 次, 即刷 10 GB, 可适当调大.</p>
+<p>使用 <code>python cloudflare-warp-plus-aff.py</code> 即可运行, 小技巧, 可以使用 <code>nohup python cloudflare-warp-plus-aff.py &amp;</code> 在 Liunx 服务器上将脚本放在后台运行, 不用管它.</p>
+<p>Warp VPN 作为备用还行, 经测试速度下载速度还行, 上传速度很慢, 高峰时段则根本没网络.</p>
 <p>完.</p>
 <p>PS: 在知道 Cloudflare Workers 之前, 我一直使用 Nginx 反代的方式来访问在国内被屏蔽的网站, Cloudflare Workers则可以不使用自己的服务器减少流量消耗, 并使用任播技术加快网站的访问速度, 于是马上换成 Cloudflare Workers + WorkersProxy 来部署了, Cloudflare 真乃良心大厂, 吹爆!</p>
-<h1 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h1><ul>
+<h2 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h2><ul>
 <li><a href="https://www.chromeba.net/cloudflare-workers%e5%8f%8d%e4%bb%a3%e4%bb%bb%e6%84%8f%e7%bd%91%e7%ab%99-%e5%8f%af%e5%81%9a%e8%b0%b7%e6%ad%8c%e9%95%9c%e5%83%8f.html" target="_blank" rel="noopener">Cloudflare Workers反代任意网站 可做谷歌镜像</a></li>
 <li><a href="https://wzfou.com/goindex/" target="_blank" rel="noopener">用GoIndex将Google Drive变身直链网盘-外链图片视频 可直接在线预览和观看</a></li>
 </ul>
@@ -405,6 +413,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/02/termux/" rel="prev" title="使用 Termux 将手机变成 Linux 服务器">
+                使用 Termux 将手机变成 Linux 服务器 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -485,7 +497,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -498,7 +510,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
@@ -531,7 +543,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Cloudflare-CDN"><span class="nav-number">1.</span> <span class="nav-text">Cloudflare CDN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cloudflare-Workers"><span class="nav-number">2.</span> <span class="nav-text">Cloudflare Workers</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#WorkersProxy"><span class="nav-number">2.1.</span> <span class="nav-text">WorkersProxy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GoIndex"><span class="nav-number">2.2.</span> <span class="nav-text">GoIndex</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#鸣谢"><span class="nav-number">3.</span> <span class="nav-text">鸣谢</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Cloudflare-CDN"><span class="nav-number">1.</span> <span class="nav-text">Cloudflare CDN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cloudflare-Workers"><span class="nav-number">2.</span> <span class="nav-text">Cloudflare Workers</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#WorkersProxy"><span class="nav-number">2.0.1.</span> <span class="nav-text">WorkersProxy</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GoIndex"><span class="nav-number">2.1.</span> <span class="nav-text">GoIndex</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#WARP"><span class="nav-number">3.</span> <span class="nav-text">WARP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#鸣谢"><span class="nav-number">4.</span> <span class="nav-text">鸣谢</span></a></li></div>
             
 
           </div>

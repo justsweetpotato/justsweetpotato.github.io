@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="技术,">
+  <meta name="keywords" content="技术,Termux,Linux,">
 
 
 
@@ -79,20 +79,18 @@
 
 
 
-<meta name="description" content="PS: 本教程已过时, 请移步 https://github.com/justsweetpotato/V2Ray_Tutorial">
-<meta name="keywords" content="技术">
+<meta name="description" content="什么是 Termux?Termux 是一个 Android 的 APP, 可以模拟 Linux 环境, 在手机上执行 Linux 命令, 不需要 root, 安装即可用. 你平时是怎样将手机上的文件传到电脑上的呢, 使用数据线? 还是下载专门的软件? 这些都太麻烦了, 完全可以借用 Termux 在手机端跑一个 Web 服务器, 让电脑端访问, 直接下载文件. 你也可以将旧手机利用起来, 让它继续">
+<meta name="keywords" content="技术,Termux,Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="V2Ray 简易搭建教程">
-<meta property="og:url" content="http://justsweetpotato.github.io/2018/11/03/v2ray_deploy/index.html">
+<meta property="og:title" content="使用 Termux 将手机变成 Linux 服务器">
+<meta property="og:url" content="http://justsweetpotato.github.io/2019/10/02/termux/index.html">
 <meta property="og:site_name" content="Potato&#39;s Blog">
-<meta property="og:description" content="PS: 本教程已过时, 请移步 https://github.com/justsweetpotato/V2Ray_Tutorial">
+<meta property="og:description" content="什么是 Termux?Termux 是一个 Android 的 APP, 可以模拟 Linux 环境, 在手机上执行 Linux 命令, 不需要 root, 安装即可用. 你平时是怎样将手机上的文件传到电脑上的呢, 使用数据线? 还是下载专门的软件? 这些都太麻烦了, 完全可以借用 Termux 在手机端跑一个 Web 服务器, 让电脑端访问, 直接下载文件. 你也可以将旧手机利用起来, 让它继续">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/v2ray/v2rayn.png">
-<meta property="og:updated_time" content="2019-10-02T10:00:04.228Z">
+<meta property="og:updated_time" content="2019-10-02T18:50:43.410Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="V2Ray 简易搭建教程">
-<meta name="twitter:description" content="PS: 本教程已过时, 请移步 https://github.com/justsweetpotato/V2Ray_Tutorial">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/v2ray/v2rayn.png">
+<meta name="twitter:title" content="使用 Termux 将手机变成 Linux 服务器">
+<meta name="twitter:description" content="什么是 Termux?Termux 是一个 Android 的 APP, 可以模拟 Linux 环境, 在手机上执行 Linux 命令, 不需要 root, 安装即可用. 你平时是怎样将手机上的文件传到电脑上的呢, 使用数据线? 还是下载专门的软件? 这些都太麻烦了, 完全可以借用 Termux 在手机端跑一个 Web 服务器, 让电脑端访问, 直接下载文件. 你也可以将旧手机利用起来, 让它继续">
 
 
 
@@ -122,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://justsweetpotato.github.io/2018/11/03/v2ray_deploy/">
+  <link rel="canonical" href="http://justsweetpotato.github.io/2019/10/02/termux/">
 
 
 
 
 
-  <title>V2Ray 简易搭建教程 | Potato's Blog</title>
+  <title>使用 Termux 将手机变成 Linux 服务器 | Potato's Blog</title>
   
 
 
@@ -245,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://justsweetpotato.github.io/2018/11/03/v2ray_deploy/">
+    <link itemprop="mainEntityOfPage" href="http://justsweetpotato.github.io/2019/10/02/termux/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jake Wu">
@@ -262,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">V2Ray 简易搭建教程</h1>
+          <h1 class="post-title" itemprop="name headline">使用 Termux 将手机变成 Linux 服务器</h1>
         
 
         <div class="post-meta">
@@ -274,8 +272,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-03T20:57:37+08:00">
-                2018-11-03
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-02T20:41:47+08:00">
+                2019-10-02
               </time>
             
 
@@ -312,55 +310,46 @@
       
 
       
-        <p>PS: 本教程已过时, 请移步 <a href="https://github.com/justsweetpotato/V2Ray_Tutorial" target="_blank" rel="noopener">https://github.com/justsweetpotato/V2Ray_Tutorial</a></p>
+        <h2 id="什么是-Termux"><a href="#什么是-Termux" class="headerlink" title="什么是 Termux?"></a>什么是 Termux?</h2><p>Termux 是一个 Android 的 APP, 可以模拟 Linux 环境, 在手机上执行 Linux 命令, 不需要 root, 安装即可用.</p>
+<p>你平时是怎样将手机上的文件传到电脑上的呢, 使用数据线? 还是下载专门的软件? 这些都太麻烦了, 完全可以借用 Termux 在手机端跑一个 Web 服务器, 让电脑端访问, 直接下载文件.</p>
+<p>你也可以将旧手机利用起来, 让它继续发光发热, 像树莓派一样运行各种有趣的程序.</p>
 <a id="more"></a>
 
-<i>
-"Doesn't matter what you did, or what you were. If you go out there, you fight, and you fight to kill. Stay in here, you're good. I'll send your brother to come find you. But if you step out that door, you are an Avenger."    -Hawkeye
-</i>
+<h2 id="为-Termux-更换国内镜像源"><a href="#为-Termux-更换国内镜像源" class="headerlink" title="为 Termux 更换国内镜像源"></a>为 Termux 更换国内镜像源</h2><p>首先, 下载 Termux 你可以去 Google Play 或 APKPure 下载.</p>
+<p>将镜像源改为国内是为了加快软件包的下载速度.</p>
+<p>输入如下命令:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export EDITOR=vi  </span><br><span class="line">apt edit-sources</span><br></pre></td></tr></table></figure>
 
-<br>
+<p>将其中的内容替换为:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># The termux repository mirror from TUNA:</span><br><span class="line">deb [arch=all,arm] https://mirrors.tuna.tsinghua.edu.cn/termux stable main</span><br></pre></td></tr></table></figure>
 
-<p>本教程基于 V2ray 官方教程, 力求做到最通俗易懂.</p>
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>首先, 你需要下载安装 V2Ray, 这里有官方安装脚本一键安装, 建议 Debian 9.x 以上以及 Ubuntu 16.04 以上的系统.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ bash &lt;(curl -L -s https://install.direct/go.sh)</span><br></pre></td></tr></table></figure>
+<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><p>更新一下系统, 确保使用最新版本:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 连接远程仓库，获取软件包信息</span><br><span class="line">$ apt update</span><br><span class="line"></span><br><span class="line"># 更新本地已经安装的软件包</span><br><span class="line">$ apt upgrade</span><br></pre></td></tr></table></figure>
 
-<p>如果提示没有 curl, 请使用 apt install curl 命令安装.</p>
-<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>配置文件位于 /etc/v2ray/config.json 目录下, 这里我们先不修改配置, 有一个自动生成 V2Ray 服务器配置参数的工具, 可以快速帮助我们生成想要的配置参数, 然后直接复制进我们的服务器设置中就可以了.</p>
-<p>点击 <a href="https://intmainreturn0.com/v2ray-config-gen/#" target="_blank" rel="noopener"><span style="color: #ff0000;">这里</span></a> 打开生成器. 选择你需要的参数后, 复制中间部分生成的参数, 使用 vi 编辑器编辑我们服务器的 config.json 文件, 复制进去.</p>
-<p>PS: 请勿关闭生成器页面, 等下还要复制到客户端里面.</p>
-<p>KCP 模式可以应对运营商 QoS 限速, 如果你所在的地区线路被限速, 推荐使用这种模式. *可以直接配置多个端口使用.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vi /etc/v2ray/config.json</span><br></pre></td></tr></table></figure>
+<p>测试系统:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 安装 sl 软件包</span><br><span class="line">$ apt install sl</span><br><span class="line"></span><br><span class="line"># 运行</span><br><span class="line">$ sl</span><br></pre></td></tr></table></figure>
 
-<p>vi 编辑器的用法不做过多科普, 打开配置文件后, 按一下键盘上的 i 进入编辑模式, 复制进刚刚生成的配置参数, 按一下 Esc 进入交互模式, 接着按住 Shift + z + z (按住 shift 按两下z), 注意不要切换到输入法, 即可保存退出, 可以使用 cat /etc/v2ray/config.json 命令来检查输入的是否正确.</p>
-<h4 id="运行服务端"><a href="#运行服务端" class="headerlink" title="运行服务端"></a>运行服务端</h4><p>修改完配置文件后, 我们需要重启 v2Ray 服务器, 在控制台输入如下命令.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl restart v2ray</span><br></pre></td></tr></table></figure>
+<p>命令行输入 sl 后出现一辆运行着的小火车动画则成功.</p>
+<h2 id="访问手机储存"><a href="#访问手机储存" class="headerlink" title="访问手机储存"></a>访问手机储存</h2><p>Termux 默认状态下只能访问自己的数据, 如果要访问手机储存, 需要设置权限:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ termux-setup-storage</span><br></pre></td></tr></table></figure>
 
-<p>Ubuntu 下使用 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ service v2ray restart</span><br></pre></td></tr></table></figure>
+<p>执行上面的命令以后, 会跳出一个对话框, 询问是否允许 Termux 访问手机存储, 点击”允许”.</p>
+<p>这会在当前目录下生成一个storage子目录, 它是手机存储的符号链接, 后文下载文件就是到这个目录去下载.</p>
+<h2 id="软件包管理"><a href="#软件包管理" class="headerlink" title="软件包管理"></a>软件包管理</h2><p>除了apt命令, Termux 还提供pkg命令进行软件包管理.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 安装软件包</span><br><span class="line">$ pkg install [package name]</span><br><span class="line"></span><br><span class="line"># 卸载软件包</span><br><span class="line">$ pkg uninstall [package name]</span><br><span class="line"></span><br><span class="line"># 列出所有软件包</span><br><span class="line">$ pkg list-all</span><br></pre></td></tr></table></figure>
 
-<p>即可重启服务, 下面是你可能需要用到的终端命令.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl status v2ray        # 查看运行状态</span><br><span class="line"></span><br><span class="line">$ sudo systemctl stop v2ray          # 停止运行</span><br><span class="line"></span><br><span class="line">$ sudo systemctl start v2ray         # 启动服务</span><br></pre></td></tr></table></figure>
+<p>其实, pkg 的底层就是 apt, 只是运行前会执行一次 apt update, 保证安装的是最新版本. 所以, apt install sl 基本等同于 pkg install sl.</p>
+<h2 id="使用-Python-架设简易服务器"><a href="#使用-Python-架设简易服务器" class="headerlink" title="使用 Python 架设简易服务器"></a>使用 Python 架设简易服务器</h2><p>使用下面的命令安装 Python 并开启简易服务器:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ apt install python</span><br><span class="line">$ python -m http.server 8080</span><br></pre></td></tr></table></figure>
 
-<p>目前服务端就已经成功配置完毕并且启动啦.</p>
-<h4 id="运行客户端"><a href="#运行客户端" class="headerlink" title="运行客户端"></a>运行客户端</h4><p>Windows 客户端需要用到 v2rayN, 这是一款可视化的 V2Ray 客户端, 使用它, 连接服务器, 配置客户端都会变得十分容易(Mac 客户端见下方). </p>
-<p>点击 <span style="color: #ff0000;"><a style="color: #ff0000;" href="https://github.com/2dust/v2rayN/releases" target="_blank" rel="noopener">这里</a></span> 下载名为 v2rayN.zip 的文件, 目前版本是 2.17. </p>
-<p>接下来我们还需要下载 v2ray-core, 需要它 v2rayN 客户端才能运行, 点击 <a href="https://github.com/v2ray/v2ray-core/releases" target="_blank" rel="noopener"><span style="color: #ff0000;">这里</span></a> 下载对应你操作系统的压缩包. 之后我们需要把这两个文件解压, 解压出来的文件放在同一个文件夹下, 如图所示.</p>
-<p><img src="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/v2ray/v2rayn.png" alt="V2RayN"></p>
-<p>然后双击 v2rayN.exe 运行客户端, 点击左上角的 服务器 - 添加[VMess]服务器 填入你刚刚配置的参数, 点击确定. 随后在右下角的小图标上 右键点击 - 启用Http代理, 服务器选择刚刚配置进去的服务器, Http代理模式 根据你自己的需要选择.</p>
-<p>到此为止就已经配置完毕了, 你可能还需要给你的浏览器, 或者应用单独设置代理, 需要把代理模式设置为 socks5, 地址为 127.0.0.1, 端口为 V2rayN 设置中的 参数设置 - 本地监听端口.</p>
-<p>Mac 客户端需要用到 V2RayX, 下载后可以直接配置使用, 点击 <a style="color: #ff0000;" href="https://github.com/Cenmrev/V2RayX/releases" target="_blank" rel="noopener">这里</a> 下载. core 如需更新参见项目文档.</p>
-<p>iOS 客户端推荐 Shadowrocket(暂时不支持 KCP), 或者 i2Ray(支持 KCP), 使用 [非国区] iTunes 账号均可下载.</p>
-<p>现在, 享受自由的互联网吧.</p>
-<p>你现在是复仇者了.</p>
-<h4 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h4><p>在 CentOS6 上脚本安装提示 “Install daemon fail, please install it manually”, 原因是不支持 CentOS6, 解决方法见  <a href="https://www.feiqy.com/v2ray/" target="_blank" rel="noopener">https://www.feiqy.com/v2ray/</a></p>
-<p>参考资料:</p>
-<ol>
-<li><a href="https://www.v2ray.com/" target="_blank" rel="noopener">https://www.v2ray.com/</a></li>
-<li><a href="https://toutyrater.github.io/" target="_blank" rel="noopener">https://toutyrater.github.io/</a></li>
-<li><a href="https://www.youtube.com/watch?v=-z06k0654Wg" target="_blank" rel="noopener">https://www.youtube.com/watch?v=-z06k0654Wg</a></li>
-<li><a href="https://www.youtube.com/watch?v=4yqTvFZJTuI&amp;t=1s" target="_blank" rel="noopener">https://www.youtube.com/watch?v=4yqTvFZJTuI&amp;t=1s</a></li>
-</ol>
+<p>接下来, 就可以在同一网络下在电脑上输入手机的 IP地址:端口号 的方式, 访问并下载手机上的文件了.</p>
+<p><code>ifconfig</code> 命令可以查看当前 IP 地址.</p>
+<p>另外, 手机现在相当于一台 Linux 服务器, 所以也可以用 SSH, Nginx 等连接, 也可以架设 VPN 服务用作进入校园网的工具, 总之感觉很强大, 更多使用方法等你去发掘.</p>
+<p>完.</p>
+<h2 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h2><ul>
+<li><a href="https://github.com/jamiehuangpro/termux-config" target="_blank" rel="noopener">termux-config</a></li>
+<li><a href="https://www.ruanyifeng.com/blog/2019/07/termux-tutorial.html" target="_blank" rel="noopener">Termux 入门教程：架设手机 Server 下载文件</a></li>
+</ul>
 
       
     </div>
@@ -380,6 +369,10 @@
           
             <a href="/tags/技术/" rel="tag"># 技术</a>
           
+            <a href="/tags/Termux/" rel="tag"># Termux</a>
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
         </div>
       
 
@@ -391,15 +384,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/10/02/cloudflare-break-the-wall/" rel="next" title="Cloudflare 用于科学上网的三种方法">
+                <i class="fa fa-chevron-left"></i> Cloudflare 用于科学上网的三种方法
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/23/you2php_in_heroku/" rel="prev" title="Heroku 免费搭建 YouTube 镜像网站">
-                Heroku 免费搭建 YouTube 镜像网站 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -526,7 +519,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置"><span class="nav-number">2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行服务端"><span class="nav-number">3.</span> <span class="nav-text">运行服务端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行客户端"><span class="nav-number">4.</span> <span class="nav-text">运行客户端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常见问题"><span class="nav-number">5.</span> <span class="nav-text">常见问题</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-Termux"><span class="nav-number">1.</span> <span class="nav-text">什么是 Termux?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为-Termux-更换国内镜像源"><span class="nav-number">2.</span> <span class="nav-text">为 Termux 更换国内镜像源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境准备"><span class="nav-number">3.</span> <span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#访问手机储存"><span class="nav-number">4.</span> <span class="nav-text">访问手机储存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软件包管理"><span class="nav-number">5.</span> <span class="nav-text">软件包管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-Python-架设简易服务器"><span class="nav-number">6.</span> <span class="nav-text">使用 Python 架设简易服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#鸣谢"><span class="nav-number">7.</span> <span class="nav-text">鸣谢</span></a></li></ol></div>
             
 
           </div>
