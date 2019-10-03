@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/cloudflare/domain_workers.png">
 <meta property="og:image" content="https://raw%E3%80%82githubusercontent.com/justsweetpotato/markdown-img-store/master/cloudflare/domain_change.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/cloudflare/goindex.png">
-<meta property="og:updated_time" content="2019-10-03T06:02:15.417Z">
+<meta property="og:updated_time" content="2019-10-03T08:04:25.340Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cloudflare 用于科学上网的三种方法">
 <meta name="twitter:description" content="Cloudflare是一间总部位于旧金山的美国跨国IT企业，以向客户提供基于反向代理的内容分发网络及分布式域名解析服务为主要业务。Cloudflare可以帮助受保护站点抵御包拒绝服务攻击等网络攻击，确保该网站长期在线，同时提升网站的性能、加载速度以改善访客体验。 维基百科 本文讲述了利用 Cloudflare CDN 来将被 Block 的 IP 救活， 以及使用 Cloudflare Worke">
@@ -342,10 +342,10 @@
 <p><img src="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/cloudflare/workers.png" alt="1"></p>
 <p>将项目中的 index。js 复制到 Script 中， 然后对其进行修改， 修改完毕后点击 Save and Deploy 右侧可以看见预览。</p>
 <p><img src="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/cloudflare/workers_js.png" alt="2"></p>
-<p>然后你就可以保存 Cloudflare 提供的域名来访问了， 但是你可以添加自己的域名。<br>方式1: 如果你不是使用 Cloudflare DNS 解析的话， 在原 DNS 解析商处添加一条 CNAME 记录指向此域名。<br>方式2: 将域名交由 Cloudflare 解析， 并添加一条 A 记录， 接着如下图所示点击 Workers 然后点击 Add route。</p>
+<p>然后你就可以保存 Cloudflare 提供的域名来访问了， 但是你可以添加自己的域名。<br>先将域名交由 Cloudflare DNS 解析，并确保为状态为 Proxied（云朵点亮），即开启 CDN。<br>接下来添加一条 CNAME 记录，并将一个子域名指向之前由 Cloudflare Workers 提供的域名。<br>然后你需要如下图所示将子域名填入 Add route 中。</p>
 <p><img src="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/cloudflare/domain_workers.png" alt="3"></p>
 <p><img src="https://raw%E3%80%82githubusercontent.com/justsweetpotato/markdown-img-store/master/cloudflare/domain_change.png" alt="4"></p>
-<p>你需要将域名写成 <a href="https://apps.mydomain.com/" target="_blank" rel="noopener">https://apps.mydomain.com/</a>* 的形式注意结尾的 /*</p>
+<p>请注意，你需要将子域名写成 <a href="https://apps.mydomain.com/" target="_blank" rel="noopener">https://apps.mydomain.com/</a>* 的形式注意结尾的 /*</p>
 <p>然后你就可以使用自己的域名访问了。</p>
 <h3 id="GoIndex"><a href="#GoIndex" class="headerlink" title="GoIndex"></a>GoIndex</h3><p>GoIndex 调用了 rclone 的接口， 同样使用了 Cloudflare Workers 部署。</p>
 <p>演示: <a href="https://drive.littlepotato.life/" target="_blank" rel="noopener">https://drive.littlepotato.life/</a></p>
