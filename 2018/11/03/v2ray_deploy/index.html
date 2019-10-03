@@ -88,7 +88,7 @@
 <meta property="og:description" content="PS: 本教程已过时, 请移步 https://github.com/justsweetpotato/V2Ray_Tutorial">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/v2ray/v2rayn.png">
-<meta property="og:updated_time" content="2019-10-02T10:00:04.228Z">
+<meta property="og:updated_time" content="2019-10-03T16:01:36.402Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="V2Ray 简易搭建教程">
 <meta name="twitter:description" content="PS: 本教程已过时, 请移步 https://github.com/justsweetpotato/V2Ray_Tutorial">
@@ -329,7 +329,7 @@
 <h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>配置文件位于 /etc/v2ray/config.json 目录下, 这里我们先不修改配置, 有一个自动生成 V2Ray 服务器配置参数的工具, 可以快速帮助我们生成想要的配置参数, 然后直接复制进我们的服务器设置中就可以了.</p>
 <p>点击 <a href="https://intmainreturn0.com/v2ray-config-gen/#" target="_blank" rel="noopener"><span style="color: #ff0000;">这里</span></a> 打开生成器. 选择你需要的参数后, 复制中间部分生成的参数, 使用 vi 编辑器编辑我们服务器的 config.json 文件, 复制进去.</p>
 <p>PS: 请勿关闭生成器页面, 等下还要复制到客户端里面.</p>
-<p>KCP 模式可以应对运营商 QoS 限速, 如果你所在的地区线路被限速, 推荐使用这种模式. *可以直接配置多个端口使用.</p>
+<p><del>KCP 模式可以应对运营商 QoS 限速, 如果你所在的地区线路被限速, 推荐使用这种模式. *可以直接配置多个端口使用.</del><br>更正: mKCP 模式使用 UDP 发包, 通过增加带宽消耗的方式来获取更快的速度和稳定性, 对 CPU 消耗稍大. 因为国内运营商对 UDP 协议的歧视, UDP 大流量即可能会被运营商限速, 如果你被限速, 放弃使用 UDP, 建议使用 WebSocket 模式.(本文写成于刚刚接触 V2Ray 的时候, 错误较多, 还望读者指正)</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vi /etc/v2ray/config.json</span><br></pre></td></tr></table></figure>
 
 <p>vi 编辑器的用法不做过多科普, 打开配置文件后, 按一下键盘上的 i 进入编辑模式, 复制进刚刚生成的配置参数, 按一下 Esc 进入交互模式, 接着按住 Shift + z + z (按住 shift 按两下z), 注意不要切换到输入法, 即可保存退出, 可以使用 cat /etc/v2ray/config.json 命令来检查输入的是否正确.</p>
