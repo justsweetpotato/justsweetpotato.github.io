@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/cloudflare/domain_workers.png">
 <meta property="og:image" content="https://raw%E3%80%82githubusercontent.com/justsweetpotato/markdown-img-store/master/cloudflare/domain_change.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/cloudflare/goindex.png">
-<meta property="og:updated_time" content="2019-10-09T10:45:52.923Z">
+<meta property="og:updated_time" content="2019-10-15T15:05:05.468Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cloudflare 用于科学上网的三种方法">
 <meta name="twitter:description" content="Cloudflare是一间总部位于旧金山的美国跨国IT企业，以向客户提供基于反向代理的内容分发网络及分布式域名解析服务为主要业务。Cloudflare可以帮助受保护站点抵御包拒绝服务攻击等网络攻击，确保该网站长期在线，同时提升网站的性能、加载速度以改善访客体验。 维基百科 本文讲述了利用 Cloudflare CDN 来将被 Block 的 IP 救活， 以及使用 Cloudflare Worke">
@@ -350,6 +350,7 @@
 <p><img src="https://raw%E3%80%82githubusercontent.com/justsweetpotato/markdown-img-store/master/cloudflare/domain_change.png" alt="4"></p>
 <p>请注意，你需要将子域名写成 <a href="https://apps.mydomain.com/" target="_blank" rel="noopener">https://apps.mydomain.com/</a>* 的形式注意结尾的 /*</p>
 <p>然后你就可以使用自己的域名访问了。</p>
+<p>如果想代理的网站较多，不想一个个设置的话，那么推荐使用下面的 JsProxy。</p>
 <h3 id="GoIndex"><a href="#GoIndex" class="headerlink" title="GoIndex"></a>GoIndex</h3><p>GoIndex 调用了 rclone 的接口， 同样使用了 Cloudflare Workers 部署。</p>
 <p>演示: <a href="https://drive.littlepotato.life/" target="_blank" rel="noopener">https://drive.littlepotato.life/</a></p>
 <p>项目地址: <a href="https://github.com/donwa/goindex" target="_blank" rel="noopener">https://github.com/donwa/goindex</a></p>
@@ -361,6 +362,10 @@
 <p>点击生成代码。</p>
 <p>如之前一样将代码复制进 Cloudflare Workers 中部署。</p>
 <p>同样的你也可以设置自己的域名访问。</p>
+<h3 id="JsProxy"><a href="#JsProxy" class="headerlink" title="JsProxy"></a>JsProxy</h3><p>JsProxy 也是一个使用 Workers 部署的项目，优点是不需要自己单独设置网站，通过输入网址的方式反代任何网站（包括 YouTube），使用上比 WorkersProxy 更方便。</p>
+<p>演示：<a href="https://proxy.littlepotato.cf/" target="_blank" rel="noopener">https://proxy.littlepotato.cf/</a></p>
+<p>项目地址：<a href="https://github.com/EtherDream/jsproxy/" target="_blank" rel="noopener">https://github.com/EtherDream/jsproxy/</a></p>
+<p>这里就省略过程了，步骤与 WorkersProxy 完全相同。</p>
 <h2 id="WARP"><a href="#WARP" class="headerlink" title="WARP"></a>WARP</h2><p>Cloudflare Warp VPN 是 Cloudflare 推出的一项网络隐私保护服务， 原本的 1.1.1.1 APP 只提供 DNS 服务， 最近新推出了 Warp VPN 服务， 完全免费， 你还可以通过邀请朋友使用升级到 Warp+， Warp+ 使用 Argo 技术速度将更快。</p>
 <p>在 Google Play 或 iOS Store 均可下载。 </p>
 <p>有一个脚本可以刷 Warp+ 的流量， 爽撸一波。</p>
@@ -546,7 +551,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CDN"><span class="nav-number">1.</span> <span class="nav-text">CDN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Workers"><span class="nav-number">2.</span> <span class="nav-text">Workers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#WorkersProxy"><span class="nav-number">2.1.</span> <span class="nav-text">WorkersProxy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GoIndex"><span class="nav-number">2.2.</span> <span class="nav-text">GoIndex</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WARP"><span class="nav-number">3.</span> <span class="nav-text">WARP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#鸣谢"><span class="nav-number">4.</span> <span class="nav-text">鸣谢</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CDN"><span class="nav-number">1.</span> <span class="nav-text">CDN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Workers"><span class="nav-number">2.</span> <span class="nav-text">Workers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#WorkersProxy"><span class="nav-number">2.1.</span> <span class="nav-text">WorkersProxy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GoIndex"><span class="nav-number">2.2.</span> <span class="nav-text">GoIndex</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JsProxy"><span class="nav-number">2.3.</span> <span class="nav-text">JsProxy</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WARP"><span class="nav-number">3.</span> <span class="nav-text">WARP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#鸣谢"><span class="nav-number">4.</span> <span class="nav-text">鸣谢</span></a></li></ol></div>
             
 
           </div>
