@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/cloudflare/domain_workers.png">
 <meta property="og:image" content="https://raw%E3%80%82githubusercontent.com/justsweetpotato/markdown-img-store/master/cloudflare/domain_change.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/cloudflare/goindex.png">
-<meta property="og:updated_time" content="2019-10-15T15:05:05.468Z">
+<meta property="og:updated_time" content="2019-10-28T17:44:29.655Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cloudflare 用于科学上网的三种方法">
 <meta name="twitter:description" content="Cloudflare是一间总部位于旧金山的美国跨国IT企业，以向客户提供基于反向代理的内容分发网络及分布式域名解析服务为主要业务。Cloudflare可以帮助受保护站点抵御包拒绝服务攻击等网络攻击，确保该网站长期在线，同时提升网站的性能、加载速度以改善访客体验。 维基百科 本文讲述了利用 Cloudflare CDN 来将被 Block 的 IP 救活， 以及使用 Cloudflare Worke">
@@ -373,7 +373,7 @@
 <p>这里我使用的是 Python 版， 复制 cloudflare-warp-plus-aff.py 文件中的内容到本地， 打开 APP， 在“设置”中打开“More settings”， 打开“Diagnostics”复制下自己的“ID”。</p>
 <p>编辑下载的 cloudflare-warp-plus-aff.py 文件， 将 <code>referrer = &quot;YOUR REFERRER ID&quot;</code> 改为自己的 ID， <code>timesToLoop = 10</code> 的意思是刷 10 次， 即刷 10 GB， 可适当调大。</p>
 <p>使用 <code>python cloudflare-warp-plus-aff.py</code> 即可运行， 小技巧， 可以使用 <code>nohup python cloudflare-warp-plus-aff.py &amp;</code> 在 Liunx 服务器上将脚本放在后台运行， 不用管它。</p>
-<p>Warp VPN 作为备用还行， 经测试速度下载速度还行， 上传速度很慢， 高峰时段则几乎没网络。</p>
+<p><del>Warp VPN 作为备用还行， 经测试速度下载速度还行， 上传速度很慢， 高峰时段则几乎没网络。</del><br>经众多网友反应，宽带网络下皆无法连上 Warp VPN，数据网络下则正常，由于目前手机数据网络大多是 IPv6，故怀疑 Warp VPN 在 IPv4 网络下已经被封锁。</p>
 <p>完。</p>
 <p>PS: 在知道 Cloudflare Workers 之前， 我一直使用 Nginx 反代的方式来访问在国内被屏蔽的网站， Cloudflare Workers则可以不使用自己的服务器减少流量消耗， 并使用任播技术加快网站的访问速度， 于是马上换成 Cloudflare Workers + WorkersProxy 来部署了， Cloudflare 真乃良心大厂， 吹爆!</p>
 <h2 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h2><ul>
@@ -505,7 +505,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -518,7 +518,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>

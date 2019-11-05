@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="技术,Cloudflare,翻墙,免费,Workers,Heroku,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文介绍两种完全不需要购买服务器就可以科学上网的方式。  Cloudflare Workers，Workers 可以让你直接运行任何 JavaScript 程序，免除服务器部署等一系列烦恼，同时使用 Cloudflare CDN 的缓存技术，从全球任何一个地方访问都可以达到理想的速度。 Heroku APP, 使用 Heroku 的云应用可以部署一个完整的 Web 应用程序，拥有前后端与数据库，就">
+<meta name="keywords" content="技术,Cloudflare,翻墙,免费,Workers,Heroku">
+<meta property="og:type" content="article">
+<meta property="og:title" content="免费科学上网工具整合">
+<meta property="og:url" content="http://justsweetpotato.github.io/2019/10/16/fight-for-free/index.html">
+<meta property="og:site_name" content="Potato&#39;s Blog">
+<meta property="og:description" content="本文介绍两种完全不需要购买服务器就可以科学上网的方式。  Cloudflare Workers，Workers 可以让你直接运行任何 JavaScript 程序，免除服务器部署等一系列烦恼，同时使用 Cloudflare CDN 的缓存技术，从全球任何一个地方访问都可以达到理想的速度。 Heroku APP, 使用 Heroku 的云应用可以部署一个完整的 Web 应用程序，拥有前后端与数据库，就">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/6.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/7.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/8.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/9.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/10.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/11.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/12.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/13.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/15.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/14.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/16.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/17.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/18.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/19.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/20.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/21.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/22.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/23.png">
+<meta property="og:updated_time" content="2019-10-16T14:54:54.723Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="免费科学上网工具整合">
+<meta name="twitter:description" content="本文介绍两种完全不需要购买服务器就可以科学上网的方式。  Cloudflare Workers，Workers 可以让你直接运行任何 JavaScript 程序，免除服务器部署等一系列烦恼，同时使用 Cloudflare CDN 的缓存技术，从全球任何一个地方访问都可以达到理想的速度。 Heroku APP, 使用 Heroku 的云应用可以部署一个完整的 Web 应用程序，拥有前后端与数据库，就">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://justsweetpotato.github.io/2019/10/16/fight-for-free/">
+
+
+
+
+
+  <title>免费科学上网工具整合 | Potato's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Potato's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">我们生来独自一人, 最后也是.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://justsweetpotato.github.io/2019/10/16/fight-for-free/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jake Wu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Potato's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">免费科学上网工具整合</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-16T01:06:13+08:00">
+                2019-10-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文介绍两种完全不需要购买服务器就可以科学上网的方式。</p>
+<ol>
+<li>Cloudflare Workers，Workers 可以让你直接运行任何 JavaScript 程序，免除服务器部署等一系列烦恼，同时使用 Cloudflare CDN 的缓存技术，从全球任何一个地方访问都可以达到理想的速度。</li>
+<li>Heroku APP, 使用 Heroku 的云应用可以部署一个完整的 Web 应用程序，拥有前后端与数据库，就想当于在一台微型服务器上部署一样。</li>
+</ol>
+<p>PS: 以下将要介绍的方式最终实现结果都是一个“Web 代理服务”，并不能像 V2Ray 或是 Shadowsocks 那样有完整的科学上网功能。如果有浏览网页以外的科学上网需求，那么还是建议购买服务器自行搭建代理。</p>
+<a id="more"></a>
+
+<h1 id="Workers"><a href="#Workers" class="headerlink" title="Workers"></a>Workers</h1><p>Workers 免费版的限制是 10 万次请求/天，10 TB 流量/天。对于个人用户来说完全够用。 </p>
+<h2 id="JsProxy"><a href="#JsProxy" class="headerlink" title="JsProxy"></a>JsProxy</h2><p>JsProxy 是一个基于浏览器端 JS 实现的在线代理。<br>Github: <a href="https://github.com/EtherDream/jsproxy" target="_blank" rel="noopener">https://github.com/EtherDream/jsproxy</a></p>
+<h3 id="注册-Cloudflare"><a href="#注册-Cloudflare" class="headerlink" title="注册 Cloudflare"></a>注册 Cloudflare</h3><p>注册并登录 Cloudflare, <a href="https://dash.cloudflare.com" target="_blank" rel="noopener">https://dash.cloudflare.com</a></p>
+<h3 id="创建-Workers"><a href="#创建-Workers" class="headerlink" title="创建 Workers"></a>创建 Workers</h3><p>注册完成后，点击主页，点击页面中的 Workers，然后点击创建。<br><img src="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/1.png" alt></p>
+<p>取一个可以使用的域名，并点击继续。<br><img src="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/2.png" alt></p>
+<p>选择免费版套餐。<br><img src="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/3.png" alt></p>
+<h3 id="部署-JsProxy"><a href="#部署-JsProxy" class="headerlink" title="部署 JsProxy"></a>部署 JsProxy</h3><p><a href="https://github.com/EtherDream/jsproxy/blob/master/cf-worker/index.js" target="_blank" rel="noopener">https://github.com/EtherDream/jsproxy/blob/master/cf-worker/index.js</a><br>打开上述网站并复制 <code>index.js</code> 中的代码。</p>
+<p>编辑自己创建的 Workers，将复制的代码粘贴到 Script 中，覆盖原先的代码，点击保存并查看右侧的预览确保正确显示。<br><img src="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/4.png" alt></p>
+<p>返回上一级，可以给应用改一个好记的名字。<br><img src="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/5.png" alt></p>
+<p>现在可以直接使用此域名访问搭建好的“Web 代理”了。<br><img src="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/6.png" alt></p>
+<h3 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h3><p>如图所示：（示例的中的地址是：<a href="https://proxy.fight-for-free.workers.dev" target="_blank" rel="noopener">https://proxy.fight-for-free.workers.dev/</a>）<br><img src="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/7.png" alt></p>
+<p>访问谷歌。<br><img src="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/8.png" alt></p>
+<p>访问 YouTube。<br><img src="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/9.png" alt></p>
+<p>访问 500px。<br><img src="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/10.png" alt></p>
+<p>此时已经完成“Web 代理”的部署，当然你也可以绑定已有的域名，下面介绍申请免费域名以及绑定 Workers 的方法。</p>
+<h3 id="申请免费域名"><a href="#申请免费域名" class="headerlink" title="申请免费域名"></a>申请免费域名</h3><p><a href="https://my.freenom.com" target="_blank" rel="noopener">https://my.freenom.com</a><br>登录 freenom，可以使用 Google 账登录，需要全程使用全局代理。</p>
+<h3 id="注册域名"><a href="#注册域名" class="headerlink" title="注册域名"></a>注册域名</h3><p>点击注册新域名。<br><img src="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/11.png" alt></p>
+<p>搜索你想要的域名。<br><img src="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/12.png" alt></p>
+<p>选择后在页面下方点击结算，跳转的结算页面。一路点继续直到申请成功。<br><img src="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/13.png" alt></p>
+<h3 id="将域名交由-Cloudflare-解析"><a href="#将域名交由-Cloudflare-解析" class="headerlink" title="将域名交由 Cloudflare 解析"></a>将域名交由 Cloudflare 解析</h3><p>在 Cloudflare 主页点击 Add Site，输入刚刚申请的免费域名。<br><img src="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/15.png" alt></p>
+<p>记录下 Cloudflare 让你替换的 NameServer 地址（有两个）。</p>
+<p>在 freenom 主页点击 MyDomains 查看已申请到的域名。<br><img src="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/14.png" alt></p>
+<p>点击 Manage Domain 进入域名管理界面。<br><img src="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/16.png" alt></p>
+<p>如图所示点击 Mangement Tools，替换成 Cloudflare 的 NameServer。<br><img src="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/17.png" alt></p>
+<p>点击保存后，回到 Cloudflare 页面，等待生效，稍后可以点击重新检查，确认域名已经交由 Cloudflare 解析，成功后如图所示。<br><img src="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/18.png" alt></p>
+<h3 id="添加子域名"><a href="#添加子域名" class="headerlink" title="添加子域名"></a>添加子域名</h3><p>点击域名，接着点击 DNS，添加一条“A记录”或“CNAME记录”，A 的意思是，将域名指向 IPv4 地址，CNAME 记录的意思是将域名指向另一个域名。<br>PS: 此处的 Target 其实可以随意设置，因为等下会为 Workers 单独使用路由强制指定此子域名，这里是为了要让 proxy.fight-for-free.ml 这个子域名生效，正常情况下不要随意设置。<br>Name 的值填自己喜欢的，之后将作为子域名，Target 的值填 Cloudflare 给你的 Workers 生成的域名，填好后点击保存。<br><img src="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/19.png" alt></p>
+<h3 id="为-Workers-设置路由"><a href="#为-Workers-设置路由" class="headerlink" title="为 Workers 设置路由"></a>为 Workers 设置路由</h3><p>点击域名管理页面的 Workers（注意不是主页的 Workers，否则将无法设置路由）。<br><img src="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/20.png" alt></p>
+<p>然后点击 Add route。<br><img src="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/21.png" alt></p>
+<p>Route 填写刚刚设置的子域名，格式为 <code>https://xxx.xxxx.xx/*</code> 结尾处一定要加 <code>/*</code>，Worker 选择之前创建的 Worker，点击保存。<br><img src="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/22.png" alt></p>
+<p>现在，就可以使用自己的域名访问了！（示例中的地址是：<a href="https://proxy.fight-for-free.ml" target="_blank" rel="noopener">https://proxy.fight-for-free.ml/</a>）<br><img src="https://raw.githubusercontent.com/justsweetpotato/markdown-img-store/master/fight_for_free/23.png" alt></p>
+<h2 id="WorkersProxy"><a href="#WorkersProxy" class="headerlink" title="WorkersProxy"></a>WorkersProxy</h2><p>Github: <a href="https://github.com/Siujoeng-Lau/Workers-Proxy" target="_blank" rel="noopener">https://github.com/Siujoeng-Lau/Workers-Proxy</a><br>WorkersProxy 同样是使用 Workers 部署的在线网页代理，其与 JsProxy 的区别是：</p>
+<ol>
+<li>只能单独代理某个网站。</li>
+<li>可以设置禁止特定 IP 访问。</li>
+<li>完全没用到静态文件。（对比 JsProxy，JsProxy 的代码默认情况是从其开发者的网站加载静态文件，假如开发者的网站关闭了，则你还需在服务器或 Github Pages 提供 JsProxy 所需的静态文件。）</li>
+</ol>
+<p>部署与 JsProxy 完全相同，使用哪个就看个人需求了。<br>（既然都看到这里，再部署创建并部署一个新 Worker 不会超过 5 分钟，爱折腾的你，为何不试试呢?）</p>
+<h2 id="GoIndex"><a href="#GoIndex" class="headerlink" title="GoIndex"></a>GoIndex</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/技术/" rel="tag"># 技术</a>
+          
+            <a href="/tags/Cloudflare/" rel="tag"># Cloudflare</a>
+          
+            <a href="/tags/翻墙/" rel="tag"># 翻墙</a>
+          
+            <a href="/tags/免费/" rel="tag"># 免费</a>
+          
+            <a href="/tags/Workers/" rel="tag"># Workers</a>
+          
+            <a href="/tags/Heroku/" rel="tag"># Heroku</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/02/termux/" rel="next" title="使用 Termux 将手机变成 Linux 服务器">
+                <i class="fa fa-chevron-left"></i> 使用 Termux 将手机变成 Linux 服务器
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+      <div id="gitalk-container">
+      </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Jake Wu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Workers"><span class="nav-number">1.</span> <span class="nav-text">Workers</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JsProxy"><span class="nav-number">1.1.</span> <span class="nav-text">JsProxy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注册-Cloudflare"><span class="nav-number">1.1.1.</span> <span class="nav-text">注册 Cloudflare</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建-Workers"><span class="nav-number">1.1.2.</span> <span class="nav-text">创建 Workers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署-JsProxy"><span class="nav-number">1.1.3.</span> <span class="nav-text">部署 JsProxy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#效果展示"><span class="nav-number">1.1.4.</span> <span class="nav-text">效果展示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#申请免费域名"><span class="nav-number">1.1.5.</span> <span class="nav-text">申请免费域名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注册域名"><span class="nav-number">1.1.6.</span> <span class="nav-text">注册域名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将域名交由-Cloudflare-解析"><span class="nav-number">1.1.7.</span> <span class="nav-text">将域名交由 Cloudflare 解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加子域名"><span class="nav-number">1.1.8.</span> <span class="nav-text">添加子域名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为-Workers-设置路由"><span class="nav-number">1.1.9.</span> <span class="nav-text">为 Workers 设置路由</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WorkersProxy"><span class="nav-number">1.2.</span> <span class="nav-text">WorkersProxy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GoIndex"><span class="nav-number">1.3.</span> <span class="nav-text">GoIndex</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jake Wu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: 'bea650d554c3d4b1ed47',
+          clientSecret: 'fd5c4c6ecdf602f00dcc6a593ed1b51dbf6d0cc1',
+          repo: 'justsweetpotato.github.io',
+          owner: 'justsweetpotato',
+          admin: ['justsweetpotato'],
+          id: location.pathname,
+          labels: ['Gitalk'],
+          perPage: 15,
+          pagerDirection: 'last',
+          createIssueManually: true,
+          distractionFreeMode: false
+        })
+        gitalk.render('gitalk-container')           
+       </script>
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
